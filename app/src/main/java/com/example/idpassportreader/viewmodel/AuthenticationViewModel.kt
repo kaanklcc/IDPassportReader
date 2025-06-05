@@ -1,9 +1,5 @@
 package com.example.idpassportreader.viewmodel
-
-import androidx.compose.runtime.mutableStateOf
 import androidx.lifecycle.ViewModel
-import com.example.idpassportreader.model.NFCViewModel
-import com.example.idpassportreader.util.photothings.MRZParser
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.asStateFlow
