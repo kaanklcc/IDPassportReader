@@ -1,0 +1,9 @@
+package com.example.idpassportreader.util
+
+import android.graphics.Bitmap
+
+class Image {
+    var bitmapImage: Bitmap? = null
+    var base64Image: String? = null
+
+}
