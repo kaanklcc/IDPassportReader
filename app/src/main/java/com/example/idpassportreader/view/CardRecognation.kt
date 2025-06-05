@@ -36,6 +36,7 @@ import com.example.idpassportreader.ui.theme.anaRenkMavi
 import com.example.idpassportreader.ui.theme.defaultGradientBackground
 
 
+@OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun CardRecognation(
     navController: NavController
