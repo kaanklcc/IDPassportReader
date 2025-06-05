@@ -7,6 +7,7 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.idpassportreader.model.PersonDetails
 import com.example.idpassportreader.model.User
+import com.example.idpassportreader.repository.IDPassportRepository
 import com.example.idpassportreader.retrofit.ApiUtils
 import com.example.idpassportreader.util.MatchResultAction
 import com.example.idpassportreader.util.photothings.bitmapToBase64
@@ -30,19 +31,15 @@ class FaceVerificationViewModel:ViewModel() {
 
     private val _uiAction = MutableStateFlow<MatchResultAction?>(null)
     val uiAction = _uiAction.asStateFlow()
-
-
-
-    private val nfcDao = ApiUtils.getNFZDao()
-
-
+    private val repository= IDPassportRepository()
 
     fun checkNfc(user: User) {
         viewModelScope.launch {
             try {
                 Log.d("MatchViewModel", "Kullanıcı verileri gönderiliyor: $user")
 
-                val response = nfcDao.matchPhotos(user)
+                val response = repository.matchUser(user)
+
 
                 if (response.isSuccessful) {
                     val resultBody = response.body()

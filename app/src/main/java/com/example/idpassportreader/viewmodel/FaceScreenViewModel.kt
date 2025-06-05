@@ -1,17 +1,33 @@
 package com.example.idpassportreader.viewmodel
 
-import android.net.Uri
-import android.util.Log
+
 import androidx.compose.runtime.mutableStateOf
 import androidx.lifecycle.ViewModel
-import com.example.idpassportreader.util.photothings.bitmapToBase64
-import com.example.idpassportreader.util.photothings.resizeBitmap
-import com.example.idpassportreader.util.photothings.uriToBitmap
+import com.example.idpassportreader.repository.IDPassportRepository
 
-class FaceScreenViewModel:ViewModel() {
+
+/*class FaceScreenViewModel:ViewModel() {
     var base64Image= mutableStateOf("")
 
     fun reset() {
+        base64Image.value = ""
+    }
+}*/
+
+class FaceScreenViewModel:ViewModel() {
+
+    private val repository= IDPassportRepository()
+
+    var base64Image = mutableStateOf(repository.getImage())
+        private set
+
+    fun setImage(base64: String) {
+        base64Image.value = base64
+        repository.saveImage(base64)
+    }
+
+    fun reset() {
+        repository.resetImage()
         base64Image.value = ""
     }
 }
