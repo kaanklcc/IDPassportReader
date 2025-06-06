@@ -12,10 +12,11 @@ import com.example.idpassportreader.util.extractExpirationDate
 import com.example.idpassportreader.util.extractName
 import com.example.idpassportreader.util.extractSurname
 import com.example.idpassportreader.util.photothings.bitmapToBase64
+import dagger.hilt.android.lifecycle.HiltViewModel
+import javax.inject.Inject
 
-
-class MainScreenViewModel:ViewModel() {
-    private val repository= IDPassportRepository()
+@HiltViewModel
+class MainScreenViewModel@Inject constructor (val repository: IDPassportRepository):ViewModel() {
 
     fun processMRZ(mrz: String, nfcViewModel: NFCViewModel) {
         val (documentNumber, birthDate, expirationDate) = repository.getMrzData(mrz)

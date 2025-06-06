@@ -10,12 +10,11 @@ import com.example.idpassportreader.util.extractExpirationDate
 import retrofit2.Response
 import android.graphics.Bitmap
 import android.util.Log
+import com.example.idpassportreader.retrofit.NFCDao
 import com.example.idpassportreader.util.photothings.bitmapToBase64
 
 
-class IDPassportDataSource {
-    private var currentPersonData= PersonData()
-    private val nfcDao = ApiUtils.getNFZDao()
+class IDPassportDataSource(var currentPersonData: PersonData,var nfcDao:NFCDao) {
     private var base64Image: String = ""
 
     suspend fun matchUserPhotos(user: User): Response<MatchResponse> {

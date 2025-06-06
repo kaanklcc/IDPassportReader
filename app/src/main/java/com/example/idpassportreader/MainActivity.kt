@@ -27,7 +27,9 @@ import com.example.idpassportreader.viewmodel.AuthenticationViewModel
 import com.example.idpassportreader.viewmodel.FaceScreenViewModel
 import com.example.idpassportreader.viewmodel.FaceVerificationViewModel
 import com.example.idpassportreader.viewmodel.MainScreenViewModel
+import dagger.hilt.android.AndroidEntryPoint
 
+@AndroidEntryPoint
 class MainActivity : ComponentActivity() {
     private var navController: NavController? = null // NavController referansı ekleyin
     private lateinit var nfcAdapter: NfcAdapter

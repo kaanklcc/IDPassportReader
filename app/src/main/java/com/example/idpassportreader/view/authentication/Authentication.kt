@@ -112,7 +112,7 @@ fun Authentication(navController: NavController,
                     lineHeight = 18.sp,
                     modifier = Modifier
                         .fillMaxWidth()
-                        .padding(horizontal = 10.dp,)
+                        .padding(horizontal = 10.dp)
                 )
                 if (!isNfcReading) {
                     Image(

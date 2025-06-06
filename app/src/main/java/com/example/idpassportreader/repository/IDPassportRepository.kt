@@ -7,8 +7,8 @@ import com.example.idpassportreader.model.PersonData
 import com.example.idpassportreader.model.User
 import retrofit2.Response
 
-class IDPassportRepository {
-    private val IPDataSource = IDPassportDataSource()
+class IDPassportRepository(val IPDataSource :IDPassportDataSource) {
+    //private val IPDataSource = IDPassportDataSource()
 
     suspend fun matchUser(user: User): Response<MatchResponse> {
         return IPDataSource.matchUserPhotos(user)

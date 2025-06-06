@@ -8,15 +8,17 @@ import androidx.lifecycle.viewModelScope
 import com.example.idpassportreader.model.PersonDetails
 import com.example.idpassportreader.model.User
 import com.example.idpassportreader.repository.IDPassportRepository
-import com.example.idpassportreader.retrofit.ApiUtils
 import com.example.idpassportreader.util.MatchResultAction
 import com.example.idpassportreader.util.photothings.bitmapToBase64
+import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.asStateFlow
 
 import kotlinx.coroutines.launch
+import javax.inject.Inject
 
-class FaceVerificationViewModel:ViewModel() {
+@HiltViewModel
+class FaceVerificationViewModel@Inject constructor (val repository: IDPassportRepository):ViewModel() {
 
     private val _responseMessage = MutableLiveData<String?>()
     val responseMessage: LiveData<String?> = _responseMessage
@@ -31,7 +33,7 @@ class FaceVerificationViewModel:ViewModel() {
 
     private val _uiAction = MutableStateFlow<MatchResultAction?>(null)
     val uiAction = _uiAction.asStateFlow()
-    private val repository= IDPassportRepository()
+
 
     fun checkNfc(user: User) {
         viewModelScope.launch {
@@ -39,8 +41,6 @@ class FaceVerificationViewModel:ViewModel() {
                 Log.d("MatchViewModel", "Kullanıcı verileri gönderiliyor: $user")
 
                 val response = repository.matchUser(user)
-
-
                 if (response.isSuccessful) {
                     val resultBody = response.body()
                     Log.d("MatchViewModel", "Sunucu yanıtı: $resultBody")

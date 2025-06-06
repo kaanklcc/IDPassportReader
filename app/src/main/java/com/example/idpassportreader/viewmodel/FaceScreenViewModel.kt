@@ -4,19 +4,11 @@ package com.example.idpassportreader.viewmodel
 import androidx.compose.runtime.mutableStateOf
 import androidx.lifecycle.ViewModel
 import com.example.idpassportreader.repository.IDPassportRepository
+import dagger.hilt.android.lifecycle.HiltViewModel
+import javax.inject.Inject
 
-
-/*class FaceScreenViewModel:ViewModel() {
-    var base64Image= mutableStateOf("")
-
-    fun reset() {
-        base64Image.value = ""
-    }
-}*/
-
-class FaceScreenViewModel:ViewModel() {
-
-    private val repository= IDPassportRepository()
+@HiltViewModel
+class FaceScreenViewModel@Inject constructor (val repository: IDPassportRepository):ViewModel() {
 
     var base64Image = mutableStateOf(repository.getImage())
         private set
